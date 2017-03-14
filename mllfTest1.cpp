@@ -24,7 +24,7 @@ int main() {
   addIntToEndOfList(list,25);
   ASSERT_TRUE(list->head->data == 42);
   ASSERT_TRUE(list->tail->data == 25);
-
+ // cout << list->tail->data<<endl;
   p = pointerToMax(list);
   ASSERT_TRUE(p!=NULL);
   if (p!=NULL) {

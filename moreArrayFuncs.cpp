@@ -10,12 +10,7 @@
 
 int indexOfMax(int *a, int size) {
   assert(size >= 1);
-  int numMax = a[0];
-  for(int i = 0; i<size;i++){
-      if(a[i] > numMax)
-          numMax = a[i];
-  }// find the Max number first
-  
+  int numMax = largestValue(a,size); //get the largest value
   for(int i = 0; i<size;i++){
       if (a[i] == numMax)
           return i;
@@ -31,6 +26,12 @@ int indexOfMax(int *a, int size) {
 // You may assume size >= 1
 int indexOfMin(int *a, int size) {
   assert(size >= 1);
+  int numMin = smallestValue(a,size); //get the smallest value
+  for(int i = 0; i<size;i++){
+      if (a[i] == numMin)
+          return i;
+  }// return the index
+
 }
 
 // a: an array of ints.  size is how many ints in array
@@ -39,7 +40,12 @@ int indexOfMin(int *a, int size) {
 // You may assume size >= 1
 int largestValue(int *a, int size) {
   assert(size >= 1);
-  return -42; // STUB !!! Remove and replace with correct code
+  int numMax = a[0];//assume a num first
+  for(int i = 0; i<size;i++){
+      if(a[i] > numMax)
+          numMax = a[i];
+  }
+  return numMax;
 }
 
 // a: an array of ints.  size is how many ints in array
@@ -49,7 +55,12 @@ int largestValue(int *a, int size) {
 
 int smallestValue(int *a, int size) {
   assert(size >= 1);
-  return -42; // STUB !!! Remove and replace with correct code
+  int numMin = a[0];
+  for(int i = 0; i<size;i++){
+      if(a[i] < numMin)
+          numMin = a[i];
+  }
+  return numMin; // STUB !!! Remove and replace with correct code
 }
 
 
@@ -58,7 +69,11 @@ int smallestValue(int *a, int size) {
 // size may be 0 in this case, or non-zero.
 
 int sum(int *a, int size) {
-  return -42; // STUB
+    int numSum = 0;
+    for(int i = 0;i<size;i++){
+        numSum += a[i];
+    }
+    return numSum;
 }
 
 
@@ -69,7 +84,10 @@ int sum(int *a, int size) {
 // copy n elements from src to dest.
 
 void copyElements(int *dest, int *src, int n) {
-  // STUB: Fix this
+    //dest = new int[n];
+    for(int i = 0; i< n;i++)
+        dest[i] = src[i];
+    
 }
 
 // dest is an array of int that has capacity at LEAST of size n
@@ -80,7 +98,14 @@ void copyElements(int *dest, int *src, int n) {
 // return the number of elements that were copied
 
 int copyOddOnly(int *dest, int *src, int n) {
-  return -42; // stub @@@ FIX THIS 
+    int count = 0;//create a index for new array ;try *(a+1) later
+    for(int i = 0;i < n;i++){
+        if (src[i] %2){
+            dest[count] = src[i];
+            count++;
+        }
+    }
+    return count;
 }
 
 // a, b and product are all arrays of size n (or greater)
@@ -95,6 +120,7 @@ int copyOddOnly(int *dest, int *src, int n) {
 // product will be {3,10,21,36}.
 
 void multiplyPairwise(int *a, int *b, int *product, int n) {
-  // STUB; fix this
+    for(int i = 0; i < n; i++)
+        product[i] = a[i]*b[i];
 }
 

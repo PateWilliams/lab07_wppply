@@ -44,4 +44,12 @@ int smallestValue(LinkedList *list);
 
 int sum(LinkedList * list);
 
+void deleteNodeInteratively(LinkedList * list);
+
+void deleteNodeRecursively(LinkedList * list);
+void deleteNodeRecursivelyhelper(Node * p);
+
+void insertNodeToSortedList(LinkedList *list);
+
+
 #endif
