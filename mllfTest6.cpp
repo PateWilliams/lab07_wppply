@@ -7,26 +7,27 @@ using namespace std;
 int main() {
 
   Node *p;
-  int threeNums[3]={42,57,61};
-  LinkedList *list = arrayToLinkedList(threeNums,3);
-  ASSERT_EQUALS( "[42]->[57]->[61]->null", linkedListToString(list));
+  int Nums[5]={42,57,10,11,61};
+  LinkedList *list = arrayToLinkedList(Nums,5);
+  ASSERT_EQUALS( "[42]->[57]->[10]->[11]->[61]->null", linkedListToString(list));
 
-
-  cout << "Testing deleteNodeInteratively" << endl;
-  ASSERT_TRUE(p==NULL);
-  deleteNodeInteratively(list);
-  ASSERT_TRUE(list->head->data==NULL);
- //Recursively
-    
-  LinkedList *list2 = arrayToLinkedList(threeNums,3);
 
   cout << "Testing deleteNodeRecursively" << endl;
-  deleteNodeRecursively(list2);
+  ASSERT_TRUE(p==NULL);
+  deleteNodeRecursively(list,42);
+  ASSERT_EQUALS( "[57]->[10]->[11]->[61]->null", linkedListToString(list)); 
 
-  cout << list2->head->data<< endl;
-  ASSERT_TRUE(list2->head->data==NULL);//couldnot understand whynotpass
-  int  x = list2->head->data;
-  ASSERT_TRUE(x==NULL);//couldnot understand whynotpass
+
+  // Iteratively
+  int Nums1[5]={42,57,10,11,61};
+  LinkedList *list2 = arrayToLinkedList(Nums1,5);
+  ASSERT_EQUALS( "[42]->[57]->[10]->[11]->[61]->null", linkedListToString(list2));
+  cout << "Testing deleteNodeIteratively" << endl;
+  ASSERT_TRUE(p==NULL);
+  deleteNodeIteratively(list2,42);
+  ASSERT_EQUALS( "[57]->[10]->[11]->[61]->null", linkedListToString(list2)); 
+  deleteNodeIteratively(list2,57);
+  ASSERT_EQUALS( "[10]->[11]->[61]->null", linkedListToString(list2));  
   return 0;
 }
 

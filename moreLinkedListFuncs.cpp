@@ -79,46 +79,52 @@ int sum(LinkedList * list) {
   return numSum;
   }
 
-void deleteNodeInteratively(LinkedList * list){
-    assert(list!=NULL);//check empty
-    Node * p;   
-    Node * q;
-    p = list->head;
+
+void deleteNodeIteratively(LinkedList *list,int value){
+    assert(list!=NULL);
+    assert(list->head != NULL);
     
-    while(p!=NULL){
-        q = p;
+    Node *p = new Node;
+    p->next = list->head;
+    Node *q = p;
+    while(p->next!= NULL){
+        if (p->next->data == value){
+            Node *temp = p->next;
+            p->next = temp->next;
+            delete temp;
+        }
+        else{p = p->next;}
+    }
+    list->head = q->next;
+    if(list->head ==NULL){
+        list->tail = NULL;
+    }
+    else{list->tail = p;};
+}
+
+void deleteNodeRecursively(LinkedList * list, int value){
+    assert(list);
+    Node *p;
+    p = deleteNodeRecursivelyHelper(list->head,value);
+    list->head = p;
+    while (p->next!=NULL){
+        p = p->next;
+    }
+    list->tail = p;
+}
+
+Node* deleteNodeRecursivelyHelper(Node *p, int value){
+    if (p == NULL) 
+        return NULL;
+    else if (p->data != value){
+        p->next = deleteNodeRecursivelyHelper(p->next,value);
+        return p;
+    }
+    else if (p->data == value){
+        Node* q = p;
         p = p->next;
         delete q;
+        return deleteNodeRecursivelyHelper(p,value);
     }
-   
-}
-
-void deleteNodeRecursively(LinkedList* list){
-    //delete p;//does not work when delete p directly
-    Node *p = list->head;
-
-    if (!p->next){
-        delete p;
-        return;
-    }
-    
-    else{
-        deleteNodeRecursivelyhelper(p->next);
-        delete p;
-    } 
-
-}
-
-void deleteNodeRecursivelyhelper(Node* p){
-
-
-    if (!p->next){
-        delete p;
-        return;
-    }
-    
-    else{
-        deleteNodeRecursivelyhelper(p->next);
-        delete p;
-    } 
+        
 }
